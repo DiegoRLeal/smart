@@ -19,6 +19,7 @@ class QuestionnairesController < ApplicationController
 
   def create
     @questionnaire = Questionnaire.new(questionnaire_params)
+    @questionnaire.user = current_user
 
     respond_to do |format|
       if @questionnaire.save
