@@ -3,6 +3,8 @@ class QuestionnairesController < ApplicationController
 
   def index
     @questionnaires = Questionnaire.all
+    user = current_user
+    @quest_user = Questionnaire.where(user: user)
   end
 
   def show
@@ -64,7 +66,7 @@ class QuestionnairesController < ApplicationController
           :id,
           :question_type,
           :name,
-          answers_attributes: [:_destroy, :id, :name]
+          answers_attributes: [:_destroy, :id, :name, :correct]
       ]
     )
   end
